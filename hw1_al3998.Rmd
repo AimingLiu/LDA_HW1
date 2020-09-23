@@ -1,0 +1,58 @@
+---
+title: "LDA-HW1-al3998"
+author: "AimingLiu UNI:al3998"
+output:
+    md_document:
+    highlight: default
+    number_sections: true
+    citation_package:
+    keep_tex: false
+    fig_caption: true
+    latex_engine: pdflatex
+fontsize: 10pt
+geometry: margin=1in
+bibliography:
+biblio-style:
+header-includes:
+- \usepackage{indentfirst}
+- \usepackage{graphicx}
+- \usepackage{geometry}
+- \usepackage{subfigure}
+- \usepackage{amsmath}
+- \usepackage{listings}
+- \usepackage{tikz}
+- \usetikzlibrary{matrix}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, comment = "")
+library(lattice) # for xyplot and SPLOM
+library(profileR) # for profile analysis
+library(nlme) # for variogram
+library(ICSNP) # for hotelling T2 test
+library(mvtnorm)
+library(tidyverse)
+options(knitr.table.format = "latex")
+theme_set(theme_bw())
+```
+
+# Part A
+
+
+##  1. Plasma inorganic phosphate measurements obtained from 13 control and 20 obese patients 0, 0.5, 1, 1.5, 2, and 3 hours after an oral glucose challenge. The investigators intend to test the following hypotheses using Hotelling’s $T^{2}$ statistic. 
+(a) To test the null hypothesis that the group means are the same at all six measurement times. (b) To test whether the profiles in the two groups are parallel.
+(c) To test whether the differences in means at 2 and 3 hours after an oral glucose challenge are different between the control and obese patients.
+Set up suitable model clearly stating the assumptions. Suggest appropriate contrast matrices for the hypothesis tests proposed by the investigators.
+
+Set up the model as $Y = XB + E$ and also we assume 
+* $y_{s_{i}} \sim MVN(\mu_{s_{i}}, \Sigma)$
+each group has its own $\mu_{s_{i}}$
+$\Sigma$ remains the same across the groups
+And the hypothesis has the general form as $ABC = D$.And
+
+$$ 
+B = \begin{pmatrix}
+  \mu_{11} & \mu_{12} & \mu_{13} & \mu_{14} & \mu_{15} & \mu_{16} \\
+  \mu_{21} & \mu_{22} & \mu_{23} & \mu_{12} & \mu_{25} & \mu_{26} \\
+\end{pmatrix} \\
+$$
